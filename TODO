@@ -1,0 +1,22 @@
+Consider adding the following from Test::More
+
+   note
+   explain
+   can_ok
+   isa_ok
+   subtest
+   cmp_ok
+
+   like
+   unlike
+       handles strings match regexps
+       lists contain certain element
+       hashes contain certain keys
+
+Add support for input files
+
+Look at:
+   Test::Group
+   Test::Slow
+to see if there's anything I want to add.
+
