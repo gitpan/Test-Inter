@@ -4,6 +4,8 @@ use 5.004;
 use strict;
 use warnings;
 my %requires = (
+                 'File::Basename'           => '0',
+                 'IO::File'                 => '0',
                  'Test::Pod'                => '0',
                  'Test::Pod::Coverage'      => '0',
                );
@@ -11,7 +13,7 @@ my %requires = (
 
 WriteMakefile(
         NAME             => 'Test::Inter',
-        VERSION          => '1.00',
+        VERSION          => '1.01',
         ($] >= 5.004
         ? (ABSTRACT=>'framework for more readable interactive test scripts',
            AUTHOR  =>'Sullivan Beck (sbeck@cpan.org)')

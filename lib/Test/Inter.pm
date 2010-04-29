@@ -9,9 +9,11 @@ require 5.004;
 
 use warnings;
 use strict;
+use File::Basename;
+use IO::File;
 
 use vars qw($VERSION);
-$VERSION = '1.00';
+$VERSION = '1.01';
 
 ###############################################################################
 # BASE METHODS
@@ -105,9 +107,7 @@ sub new {
    my($TDIR,@LIBDIR);
    if (-f "$0") {
       my $COM = $0;
-      $COM    =~ s/^.*\///;
-      $TDIR   = $0;
-      $TDIR   =~ s/\/?$COM$//;
+      $TDIR   = dirname($COM);
       $TDIR   = '.'  if (! $TDIR);
    } elsif (-d 't') {
       $TDIR   = 't';
@@ -878,9 +878,15 @@ sub file {
 
    # Test each line
 
-   my @out = `cat $output`;
+   my $in = new IO::File;
+   $in->open($output);
+   my @out = <$in>;
+   $in->close();
    chomp(@out);
-   my @exp = `cat $expected`;
+
+   $in->open($expected);
+   my @exp = <$in>;
+   $in->close();
    chomp(@exp);
    unlink($output);
 
