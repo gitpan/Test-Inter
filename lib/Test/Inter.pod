@@ -269,6 +269,7 @@ methods:
    quiet
    mode
    skip_all
+   width
 
 =item B<version>
 
@@ -412,6 +413,20 @@ TAP grammar (i.e. 'ok 1', 'not ok 3', etc.).
 When run in interactive mode, it prints out results in a more
 human readable format.
 
+=item B<width>
+
+   $o = new Test::Inter 'width' => WIDTH;
+   $o->width(WIDTH);
+
+The width option can be set using a ('width',WIDTH) option pair, or
+by setting the TI_WIDTH environment variable, or the $::TI_WIDTH
+global variable.
+
+WIDTH is the width of the terminal (for printing out failed test
+information). It defaults to 80, but it can be set to any width (and
+lines longer then this are truncated). If WIDTH is set to 0, no
+truncation is done.
+
 =item B<skip_all>
 
    $o = new Test::Inter 'skip_all' => REASON;
@@ -518,6 +533,9 @@ the existance of the module.
 
 If $mode is passed in, it must be either the string 'forbid' or
 'feature'.
+
+If $mode is 'feature', a feature named $module is set if the module
+was able to be loaded.
 
 =item B<use_ok>
 
@@ -691,18 +709,18 @@ The following options are available:
 
 =over 4
 
-=item name
+=item B<name>
 
    name => NAME
 
 This sets the name of this set of tests. All tests will be given the
 same name.
 
-=item tests
+=item B<tests>
 
-=item func
+=item B<func>
 
-=item expected
+=item B<expected>
 
 In order to specify a series of tests, you have to specify either
 a function and a list of arguments, or a list of results.
@@ -726,9 +744,9 @@ option or included separately as:
 
 The way to specify these are covered in the next section SPECIFYING THE TESTS.
 
-=item feature
+=item B<feature>
 
-=item disable
+=item B<disable>
 
    feature => [FEATURE1, FEATURE2, ...]
 
@@ -746,13 +764,13 @@ if ALL of the features listed are available.
 If the disable option is included, the tests will be run unless ANY of the features
 listed are available.
 
-=item skip
+=item B<skip>
 
    skip => REASON
 
 Skip these tests for the reason given.
 
-=item todo
+=item B<todo>
 
    todo => 0/1
 
@@ -975,7 +993,7 @@ so the following are equivalent:
    tests => "(a b) c"
 
 Although parens are optional, they may make things more readable, and allow
-you to use something other than whitespsace as the delimiter.
+you to use something other than whitespace as the delimiter.
 
 If the character immediately following the opening paren, brace, or
 bracket is a punctuation mark, then it is used as the delimiter
@@ -1062,7 +1080,7 @@ writing my test scripts.
 
 I wrote a very basic version of my test framework which allowed me to
 write all of the tests as a string, it would parse the string, count
-the tests, ad then run them.
+the tests, and then run them.
 
 Over the years, the functionality I wanted grew, and periodically, I'd
 go back and reexamine other Test frameworks (primarily Test::More) to

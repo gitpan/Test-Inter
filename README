@@ -234,6 +234,7 @@ BASE METHODS
            quiet
            mode
            skip_all
+           width
 
     version
            $o->version();
@@ -369,6 +370,19 @@ BASE METHODS
         When run in interactive mode, it prints out results in a more human
         readable format.
 
+    width
+           $o = new Test::Inter 'width' => WIDTH;
+           $o->width(WIDTH);
+
+        The width option can be set using a ('width',WIDTH) option pair, or
+        by setting the TI_WIDTH environment variable, or the $::TI_WIDTH
+        global variable.
+
+        WIDTH is the width of the terminal (for printing out failed test
+        information). It defaults to 80, but it can be set to any width (and
+        lines longer then this are truncated). If WIDTH is set to 0, no
+        truncation is done.
+
     skip_all
            $o = new Test::Inter 'skip_all' => REASON;
            $o->skip_all(REASON);
@@ -458,6 +472,9 @@ METHODS FOR LOADING MODULES
 
         If $mode is passed in, it must be either the string 'forbid' or
         'feature'.
+
+        If $mode is 'feature', a feature named $module is set if the module
+        was able to be loaded.
 
     use_ok
            $o->use_ok(@args [,$mode]);
@@ -889,7 +906,7 @@ SPECIFYING THE TESTS
        tests => "(a b) c"
 
     Although parens are optional, they may make things more readable, and
-    allow you to use something other than whitespsace as the delimiter.
+    allow you to use something other than whitespace as the delimiter.
 
     If the character immediately following the opening paren, brace, or
     bracket is a punctuation mark, then it is used as the delimiter instead
@@ -975,7 +992,7 @@ HISTORY
 
     I wrote a very basic version of my test framework which allowed me to
     write all of the tests as a string, it would parse the string, count the
-    tests, ad then run them.
+    tests, and then run them.
 
     Over the years, the functionality I wanted grew, and periodically, I'd
     go back and reexamine other Test frameworks (primarily Test::More) to

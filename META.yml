@@ -13,11 +13,11 @@ name: Test-Inter
 provides:
   Test::Inter:
     file: lib/Test/Inter.pm
-    version: 1.01
+    version: 1.02
 requires:
   File::Basename: 0
   IO::File: 0
   perl: 5.004
 resources:
   license: http://dev.perl.org/licenses/
-version: 1.01
+version: 1.02

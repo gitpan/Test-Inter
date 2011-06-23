@@ -12,8 +12,8 @@ use strict;
 use File::Basename;
 use IO::File;
 
-use vars qw($VERSION);
-$VERSION = '1.01';
+our($VERSION);
+$VERSION = '1.02';
 
 ###############################################################################
 # BASE METHODS
@@ -49,6 +49,7 @@ sub new {
                                      # (this should only be done when
                                      # running as an interactive script)
                'mode'     => 'test', # mode to run script in
+               'width'    => 80,     # width of terminal
                'features' => {},     # a list of available features
 
                'skipall'  => '',     # the reason for skipping all
@@ -66,7 +67,7 @@ sub new {
 
    # Handle options, environment variables, global variables
 
-   my @opts = qw(start end testnum plan abort quiet mode skip_all);
+   my @opts = qw(start end testnum plan abort quiet mode width skip_all);
    my %o    = map { $_,1 } @opts;
 
    no strict 'refs';
@@ -209,6 +210,12 @@ sub mode {
    my($self,$val) = @_;
    $val = 'test'  if (! $val);
    $$self{'mode'} = $val;
+}
+
+sub width {
+   my($self,$val) = @_;
+   $val = 0  if (! $val);
+   $$self{'width'} = $val;
 }
 
 sub skip_all {
@@ -714,10 +721,16 @@ sub _cmp_result {
 sub _stringify {
    my($self,$s) = @_;
 
-   my($str) = $self->__stringify($s);
-   $str = substr($str,0,60)  if (length($str)>60);
+   my($str)   = $self->__stringify($s);
+   my($width) = $$self{'width'};
+   if ($width) {
+      $width -= 21;    # The leading string
+      $width  = 10  if ($width < 10);
+      $str = substr($str,0,$width)  if (length($str)>$width);
+   }
    return $str;
 }
+
 sub __stringify {
    my($self,$s) = @_;
 

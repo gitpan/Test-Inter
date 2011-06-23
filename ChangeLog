@@ -5,3 +5,8 @@ Version 1.00  2010-04-29
 Version 1.01  2010-04-29
    Use File::Basename and IO::File to get rid of two unix dependencies.
 
+Version 1.02  2011-06-23
+   Added 'width' method.
+   Updated some tests which did not run correctly with perl 5.015.  Renee Baecker
+
+Version 1.03

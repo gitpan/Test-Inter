@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use vars qw($o);
+our($o);
 
 BEGIN {
   print "The first test will fail, all others will be skipped.\n\n";
