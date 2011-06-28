@@ -11,7 +11,7 @@ my %requires = (
 
 WriteMakefile(
         NAME             => 'Test::Inter',
-        VERSION          => '1.02',
+        VERSION          => '1.03',
         ($] >= 5.004
         ? (ABSTRACT=>'framework for more readable interactive test scripts',
            AUTHOR  =>'Sullivan Beck (sbeck@cpan.org)')

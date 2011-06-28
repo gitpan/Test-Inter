@@ -13,7 +13,7 @@ my %build_mods = (
 
 my $build = Module::Build->new(
         license            => 'perl',
-        dist_version       => '1.02',
+        dist_version       => '1.03',
         dist_author        => 'Sullivan Beck <sbeck@cpan.org>',
         module_name        => 'Test::Inter',
         dist_abstract      => 'framework for more readable interactive test scripts',

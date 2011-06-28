@@ -10,7 +10,7 @@ BEGIN {
   $o = new Test::Inter;
 }
 
-BEGIN { $o->use_ok('5.015','forbid'); }
+BEGIN { $o->use_ok('7.001','forbid'); }
 BEGIN { $o->use_ok('Config','myconfig'); }
 BEGIN { $o->use_ok('Storable',1.01,'dclone'); }
 
