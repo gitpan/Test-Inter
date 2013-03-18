@@ -30,3 +30,4 @@ t/use_ok.2.t
 t/use_ok.3.t
 TODO
 META.yml
+META.json

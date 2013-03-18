@@ -2,9 +2,11 @@
 abstract: 'framework for more readable interactive test scripts'
 author:
   - 'Sullivan Beck <sbeck@cpan.org>'
+build_requires: {}
 configure_requires:
-  Module::Build: 0.36
-generated_by: 'Module::Build version 0.3603'
+  Module::Build: 0.39
+dynamic_config: 1
+generated_by: 'Module::Build version 0.3901, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -13,11 +15,11 @@ name: Test-Inter
 provides:
   Test::Inter:
     file: lib/Test/Inter.pm
-    version: 1.03
+    version: 1.04
 requires:
   File::Basename: 0
   IO::File: 0
   perl: 5.004
 resources:
   license: http://dev.perl.org/licenses/
-version: 1.03
+version: 1.04

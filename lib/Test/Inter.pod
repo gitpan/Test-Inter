@@ -121,22 +121,20 @@ several difficulties with this.
 
 =item B<Debugging the script is tedious>
 
-To debug the 3rd test, I've got to do the following steps:
+To debug the 3rd test, you have to open up the file and get the line number
+of the 3rd test.  You set a breakpoint there and then you can run the script.
 
-   get the line number of the 3rd func call
-   set a breakpoint for it
-   run the program
-   wait for the first two tests to complete
-   step into the function
-
-None of these steps are hard of course, but even so, getting to the
-first line of the test requires several steps which tend to break up
-your chain of thought when you want to be thinking exclusively about
-debugging the test.
+It's typically not very hard to do this, but if you have to check out the line
+number every time you want to visit a test, it can break your chain of
+thought.
 
 How much better to be able to say:
 
-    break in func when testnum==3
+    break func ($::TI_NUM==3)
+
+It would also be nice to be able to skip the first two tests... perhaps
+they take a long time to run, and I want to get right to work on test 3.
+You can do this easily too by setting the $::TI_START variable.
 
 =item B<Way too much perl interspersed with the tests>
 
@@ -263,7 +261,7 @@ methods:
 
    start
    end
-   test
+   testnum
    plan
    abort
    quiet
@@ -1069,6 +1067,52 @@ value can have an embedded newline by including a __nl__ in the value,
 but the value must be written on a single line.
 
 Expected results are separated from arguments by ' => '.
+
+=head1 ENVIRONMENT VARIABLES
+
+To summarize the information above, the following environment variables
+(and main:: variables) exist.  Each can be set in a perl script as
+a variable in the main namespace:
+
+   $::TI_END
+
+or as an environment variable:
+
+   $ENV{TI_END}
+
+=over 4
+
+=item TI_START
+
+Set this to define the test you want to start with.
+
+Example: If you have a perl test script (my_test_script) and you want
+to start running it at test 12, run the following shell commands:
+
+   TI_START=12
+   ./my_test_script.t
+
+=item TI_END
+
+Set this to define the test you want to end with.
+
+=item TI_TESTNUM
+
+Set this to run only a single test
+
+=item TI_QUIET
+
+How verbose the test script is.
+
+=item TI_MODE
+
+How the output is formatted.
+
+=item TI_WIDTH
+
+The width of the terminal.
+
+=back
 
 =head1 HISTORY
 

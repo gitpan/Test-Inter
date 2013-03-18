@@ -13,7 +13,7 @@ use File::Basename;
 use IO::File;
 
 our($VERSION);
-$VERSION = '1.03';
+$VERSION = '1.04';
 
 ###############################################################################
 # BASE METHODS
@@ -1453,7 +1453,8 @@ sub _skip {
       foreach my $v (@val) {
          $v = ''     if ($v eq '__blank__');
          $v = undef  if ($v eq '__undef__');
-      }
+         $v =~ s/__nl__/\n/g  if ($v);
+     }
       return (0,$match,@val)  if ($found);
       return (0,0);
    }
@@ -1603,5 +1604,5 @@ sub _skip {
 # cperl-continued-brace-offset: 0
 # cperl-brace-offset: 0
 # cperl-brace-imaginary-offset: 0
-# cperl-label-offset: -2
+# cperl-label-offset: 0
 # End:
