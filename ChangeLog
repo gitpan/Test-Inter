@@ -15,4 +15,6 @@ Version 1.03  2011-06-28
 Version 1.04  2013-03-18
    The __nl__ substitution wasn't happening.
 
-Version 1.05
+Version 1.05  2013-03-20
+   Fixed the Build.PL/Makefile.PL scripts to not install the example scripts.  RT 84091
+

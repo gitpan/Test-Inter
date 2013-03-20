@@ -18,20 +18,13 @@ my $class = Module::Build->subclass(
 
 my $build = $class->new(
         license            => 'perl',
-        dist_version       => '1.04',
+        dist_version       => '1.05',
         dist_author        => 'Sullivan Beck <sbeck@cpan.org>',
         module_name        => 'Test::Inter',
         dist_abstract      => 'framework for more readable interactive test scripts',
         requires           => \%requires,
         build_requires     => \%build_mods,
         sign               => 1,
-        script_files => [
-           'examples/is',
-           'examples/ok',
-           'examples/use_ok',
-           'examples/plan',
-           'examples/tests',
-        ],
 );
 
 $build->create_build_script;

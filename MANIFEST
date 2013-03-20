@@ -6,11 +6,13 @@ examples/plan
 examples/tests
 examples/use_ok
 INSTALL
+internal/build.yaml
 lib/Test/Inter.pm
 lib/Test/Inter.pod
 LICENSE
 Makefile.PL
 MANIFEST			This list of files
+META.json
 README
 t/file.1.exp
 t/file.2.exp
@@ -30,4 +32,3 @@ t/use_ok.2.t
 t/use_ok.3.t
 TODO
 META.yml
-META.json
